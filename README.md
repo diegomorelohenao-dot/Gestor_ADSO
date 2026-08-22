@@ -1,66 +1,246 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Gestor ADSO
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyecto integrador desarrollado como parte del proceso de formación del **Análisis y Desarrollo de Software (ADSO)**. Este proyecto tiene como finalidad aplicar los conocimientos adquiridos en el desarrollo de aplicaciones web utilizando **Laravel**, **PHP** y **MariaDB**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 🎯 Objetivo del Proyecto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Desarrollar una aplicación web denominada **Gestor ADSO**, orientada a la administración y gestión de información, implementando buenas prácticas de desarrollo de software, arquitectura MVC, manejo de bases de datos y control de versiones mediante Git y GitHub.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+# 🛠 Tecnologías Utilizadas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Tecnología | Versión      |
+| ---------- | ------------ |
+| PHP        | 8.2.12       |
+| Laravel    | 12.64.0      |
+| Composer   | 2.x          |
+| Node.js    | 22.x         |
+| npm        | 10.x         |
+| MariaDB    | 10.x (XAMPP) |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+> **Nota:** Verificar las versiones instaladas en cada equipo antes de ejecutar el proyecto.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+# 📦 Instalación del Proyecto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 1. Clonar el repositorio
 
-### Premium Partners
+```bash
+git clone <URL_DEL_REPOSITORIO>
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Entrar al proyecto:
 
-## Contributing
+```bash
+cd gestor-adso
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 2. Instalar dependencias de PHP
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 3. Instalar dependencias de Node.js
 
-## License
+```bash
+npm install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+# ⚙ Configuración del Entorno
+
+## Crear el archivo `.env`
+
+Copiar el archivo de ejemplo:
+
+```bash
+cp .env.example .env
+```
+
+En Windows PowerShell:
+
+```powershell
+copy .env.example .env
+```
+
+---
+
+## Generar la clave de la aplicación
+
+```bash
+php artisan key:generate
+```
+
+---
+
+## Configurar la Base de Datos
+
+Editar el archivo `.env` con los datos correspondientes.
+
+Ejemplo:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3307
+DB_DATABASE=gestor_adso
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+> **Importante:** En este proyecto MariaDB se encuentra configurado en el puerto **3307**, debido a un conflicto con una instalación previa de MySQL Workbench que utilizaba el puerto **3306**.
+
+---
+
+# 🗄 Ejecutar las Migraciones
+
+Crear las tablas de la base de datos:
+
+```bash
+php artisan migrate
+```
+
+Si se requiere reiniciar completamente la base de datos:
+
+```bash
+php artisan migrate:fresh
+```
+
+---
+
+# ▶ Iniciar el Proyecto
+
+## Iniciar el servidor Laravel
+
+```bash
+php artisan serve
+```
+
+La aplicación estará disponible en:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+## Compilar los recursos del frontend
+
+Modo desarrollo:
+
+```bash
+npm run dev
+```
+
+Modo producción:
+
+```bash
+npm run build
+```
+
+---
+
+# ⚠ Problemas Encontrados y Soluciones Aplicadas
+
+## Problema 1
+
+### Error
+
+```
+MySQL shutdown unexpectedly
+```
+
+### Causa
+
+Existía un conflicto entre MariaDB de XAMPP y una instalación previa de MySQL utilizando el puerto **3306**.
+
+### Solución
+
+- Cambiar el puerto de MariaDB a **3307**.
+- Configurar phpMyAdmin para utilizar el nuevo puerto.
+- Actualizar el archivo `.env` con el puerto correspondiente.
+
+---
+
+## Problema 2
+
+### Error
+
+```
+SQLSTATE[HY000] [2002]
+Connection refused
+```
+
+### Causa
+
+El servidor MariaDB no se encontraba iniciado.
+
+### Solución
+
+Iniciar el servicio **MySQL** desde el Panel de Control de XAMPP antes de ejecutar el proyecto.
+
+---
+
+## Problema 3
+
+### Error
+
+```
+ECONNRESET
+```
+
+### Causa
+
+El servidor Laravel no estaba disponible o existían problemas de comunicación con el servicio local.
+
+### Solución
+
+- Ejecutar:
+
+```bash
+php artisan serve
+```
+
+- Verificar que la URL utilizada fuera:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# 👨‍💻 Autor
+
+**Nombre:** Diego Andrés Morelos Henao
+
+**Programa:** Análisis y Desarrollo de Software (ADSO)
+
+**SENA**
+
+**Ficha:** _Agregar número de ficha_
+
+---
+
+# 🔗 Repositorio
+
+Cuando el proyecto sea publicado en GitHub, agregar aquí el enlace:
+
+```
+https://github.com/usuario/gestor-adso
+```
+
+---
+
+# 📄 Licencia
+
+Proyecto desarrollado con fines académicos como evidencia de aprendizaje del programa ADSO del SENA.

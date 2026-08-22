@@ -1,12 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AprendizController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/verificacion', function () {//cambie la V mayuscula por que es mala practica utiizar mayusculas en rutas.
-    return 'Gestor ADSO - entorno configurado correctamente';
-});
-
+Route::redirect('/', '/aprendices');
+Route::resource('aprendices', AprendizController::class)
+    ->parameters(['aprendices' => 'aprendiz']);
