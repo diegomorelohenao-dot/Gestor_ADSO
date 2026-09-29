@@ -221,7 +221,7 @@ http://127.0.0.1:8000
 
 # 👨‍💻 Autor
 
-**Nombre:** Diego Andrés Morelos Henao
+**Nombre:** Diego Andrés Morelo Henao
 
 **Programa:** Análisis y Desarrollo de Software (ADSO)
 
@@ -244,3 +244,44 @@ https://github.com/usuario/gestor-adso
 # 📄 Licencia
 
 Proyecto desarrollado con fines académicos como evidencia de aprendizaje del programa ADSO del SENA.
+
+---
+
+# Roles y administración
+
+La aplicación incluye tres roles:
+
+- **admin:** administra usuarios (búsqueda, filtro, creación, edición, asignación de roles y eliminación) y gestiona aprendices.
+- **instructor:** consulta y administra aprendices; no puede acceder a la administración de usuarios.
+- **aprendiz:** consulta el listado; las operaciones de escritura quedan denegadas también si intenta abrir directamente una URL protegida.
+
+El administrador no puede eliminar su propia cuenta desde el módulo de administración. Los permisos de aprendices se comprueban en rutas, Policy, controlador/Form Request y vistas.
+
+## Base de datos y datos de demostración
+
+1. Crea una base de datos vacía llamada `gestor_adso` en MariaDB/MySQL (o ajusta los valores `DB_*` del `.env`).
+2. Copia `.env.example` a `.env`, configura la conexión y ejecuta `php artisan key:generate`.
+3. Opcionalmente define `GESTOR_DEMO_PASSWORD` solo en el `.env` local, con una contraseña robusta y compartida únicamente para la demostración.
+4. Ejecuta `php artisan migrate --seed`. Se crean aprendices de ejemplo. Las tres cuentas de demostración solo se crean si `GESTOR_DEMO_PASSWORD` está definida y el entorno no es producción:
+   - `admin@gestor-adso.test`
+   - `instructor@gestor-adso.test`
+   - `aprendiz@gestor-adso.test`
+5. Ejecuta `npm install` y `npm run build`; para desarrollo usa `npm run dev`. Inicia Laravel con `php artisan serve`.
+
+No publiques `.env` ni la contraseña compartida. Para probar cada rol inicia sesión con el correo correspondiente y la contraseña que configuraste localmente. El registro público asigna automáticamente el rol `aprendiz`.
+
+## Evidencias y documento técnico
+
+Las plantillas están en [`docs/documento-tecnico-estructura.md`](docs/documento-tecnico-estructura.md) y [`docs/guia-capturas-evidencias.md`](docs/guia-capturas-evidencias.md). Guarda capturas sin secretos en `docs/evidencias/` y acompaña cada una con análisis propio. Completa las pruebas con resultados que hayas observado.
+
+## Rutas principales
+
+| Ruta | Acceso | Función |
+|---|---|---|
+| `/` | Público | Página de inicio |
+| `/login`, `/register` | Invitado | Autenticación Breeze |
+| `/dashboard` | Autenticado | Panel principal |
+| `/aprendices` | Autenticado con permiso de lectura | Búsqueda y listado |
+| `/aprendices/create` | Admin e instructor | Crear aprendiz |
+| `/admin/users` | Solo admin | Administrar usuarios |
+| `/profile` | Autenticado | Perfil propio |
