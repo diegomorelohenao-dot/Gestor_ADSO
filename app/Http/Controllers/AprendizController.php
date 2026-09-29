@@ -10,6 +10,7 @@ class AprendizController extends Controller
 {
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Aprendiz::class);
         $q = $request->query('q');
         $aprendices = Aprendiz::query()
             ->when($q, function ($query) use ($q) {
@@ -23,6 +24,7 @@ class AprendizController extends Controller
     }
     public function create()
     {
+        $this->authorize('create', Aprendiz::class);
         $aprendiz = new Aprendiz();
         return view('aprendices.create', compact('aprendiz'));
     }
@@ -33,6 +35,7 @@ class AprendizController extends Controller
     }
     public function edit(Aprendiz $aprendiz)
     {
+        $this->authorize('update', $aprendiz);
         return view('aprendices.edit', compact('aprendiz'));
     }
     public function update(StoreUpdateAprendizRequest $request, Aprendiz $aprendiz)
@@ -42,6 +45,7 @@ class AprendizController extends Controller
     }
     public function destroy(Aprendiz $aprendiz)
     {
+        $this->authorize('delete', $aprendiz);
         $aprendiz->delete();
         return redirect()->route('aprendices.index')->with('ok', 'Aprendiz eliminado');
     }

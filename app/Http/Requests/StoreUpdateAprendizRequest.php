@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Aprendiz;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -9,30 +10,22 @@ class StoreUpdateAprendizRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        // Autorizar esta operación (se puede integrar con auth más adelante)
-        return true;
+        $aprendiz = $this->route('aprendiz');
+
+        return $this->user()?->can($aprendiz ? 'update' : 'create', $aprendiz ?? Aprendiz::class) ?? false;
     }
+
     public function rules(): array
     {
-        // Para update, obtener el ID del modelo si viene inyectado en la ruta
         $id = $this->route('aprendiz')?->id;
         return [
             'nombre' => ['required', 'string', 'max:120'],
-            'documento' => [
-                'required',
-                'string',
-                'max:40',
-                Rule::unique('aprendices', 'documento')->ignore($id),
-            ],
-            'correo' => [
-                'required',
-                'email',
-                'max:120',
-                Rule::unique('aprendices', 'correo')->ignore($id),
-            ],
+            'documento' => ['required', 'string', 'max:40', Rule::unique('aprendices', 'documento')->ignore($id)],
+            'correo' => ['required', 'email', 'max:120', Rule::unique('aprendices', 'correo')->ignore($id)],
             'ficha_id' => ['nullable', 'integer'],
         ];
     }
+
     public function messages(): array
     {
         return [

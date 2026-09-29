@@ -1,24 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
- <meta charset="utf-8">
- <title>@yield('title','Gestor ADSO')</title>
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <style>
- body{max-width:980px;margin:24px auto;font-family:system-ui}
- nav a{margin-right:12px}
- .flash{background:#e6ffed;padding:8px;border-radius:8px;margin:10px 0}
- .danger{background:#ffecec;padding:8px;border-radius:8px;margin:10px 0}
- table{width:100%;border-collapse:collapse}
- th,td{border:1px solid #ddd;padding:6px}
- form{margin:0;display:inline}
- </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>@yield('title', 'Gestor ADSO') | Gestor ADSO</title>
+ @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body>
- <nav>
- <a href="/aprendices">Aprendices</a>
+ <nav class="site-nav">
+ <a class="brand" href="{{ url('/') }}"><span class="brand-mark">A</span> Gestor ADSO</a>
+ <div class="nav-links">
+ @auth<a href="{{ url('/') }}">Aprendices</a>@endauth
+
+ @auth
+ @can('manage-users')<a href="{{ route('admin.users.index') }}">Usuarios</a>@endcan
+ <span class="nav-user">Hola, {{ auth()->user()->name }} ({{ ucfirst(auth()->user()->role) }})</span>
+ <form method="POST" action="{{ route('logout') }}">
+ @csrf
+ <button class="nav-action" type="submit">Salir</button>
+ </form>
+ @endauth
+
+ @guest
+ <a href="{{ route('login') }}">Iniciar sesión</a>
+ <a href="{{ route('register') }}">Registrarse</a>
+ @endguest
+ </div>
  </nav>
- @if(session('ok'))<div class="flash">{{ session('ok') }}</div>@endif
- @yield('content')
+
+ <script>window.flashMessages = @json(['success' => session('ok') ?? session('status'), 'error' => session('error'), 'errors' => $errors->all()]);</script>
+
+ <main class="page-shell">
+ @hasSection('content')
+	 @yield('content')
+ @else
+	 {{ $slot ?? '' }}
+ @endif
+ </main>
 </body>
 </html>
