@@ -1,3 +1,4 @@
+<div class="form-grid">
 <div>
  <label>Nombre</label>
  <input
@@ -30,4 +31,5 @@
  value="{{ old('ficha_id', $aprendiz->ficha_id ?? '') }}"
  >
 </div>
-<button type="submit">Guardar</button>
+</div>
+<div class="form-actions"><button type="submit">Guardar</button></div>

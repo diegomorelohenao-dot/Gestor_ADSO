@@ -3,10 +3,10 @@
 @section('title', 'Editar Aprendiz')
 
 @section('content')
-<h1>Editar Aprendiz</h1>
+<div class="page-heading"><div><p class="eyebrow">Registro</p><h1>Editar aprendiz</h1></div></div>
 
 @if ($errors->any())
-    <div class="danger">
+    <div class="error-box">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -15,7 +15,7 @@
     </div>
 @endif
 
-<form action="{{ route('aprendices.update', $aprendiz) }}" method="POST">
+<form class="glass-panel" action="{{ route('aprendices.update', $aprendiz) }}" method="POST">
     @csrf
     @method('PUT')
     @include('aprendices._form')
