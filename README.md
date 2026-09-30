@@ -1,16 +1,16 @@
-# 📚 Gestor ADSO
+# Gestor ADSO
 
 Proyecto integrador desarrollado como parte del proceso de formación del **Análisis y Desarrollo de Software (ADSO)**. Este proyecto tiene como finalidad aplicar los conocimientos adquiridos en el desarrollo de aplicaciones web utilizando **Laravel**, **PHP** y **MariaDB**.
 
 ---
 
-# 🎯 Objetivo del Proyecto
+# Objetivo del Proyecto
 
 Desarrollar una aplicación web denominada **Gestor ADSO**, orientada a la administración y gestión de información, implementando buenas prácticas de desarrollo de software, arquitectura MVC, manejo de bases de datos y control de versiones mediante Git y GitHub.
 
 ---
 
-# 🛠 Tecnologías Utilizadas
+# Tecnologías Utilizadas
 
 | Tecnología | Versión      |
 | ---------- | ------------ |
@@ -25,7 +25,7 @@ Desarrollar una aplicación web denominada **Gestor ADSO**, orientada a la admin
 
 ---
 
-# 📦 Instalación del Proyecto
+# Instalación del Proyecto
 
 ## 1. Clonar el repositorio
 
@@ -57,7 +57,7 @@ npm install
 
 ---
 
-# ⚙ Configuración del Entorno
+# ⚙Configuración del Entorno
 
 ## Crear el archivo `.env`
 
@@ -102,7 +102,7 @@ DB_PASSWORD=
 
 ---
 
-# 🗄 Ejecutar las Migraciones
+# Ejecutar las Migraciones
 
 Crear las tablas de la base de datos:
 
@@ -150,7 +150,7 @@ npm run build
 
 ---
 
-# ⚠ Problemas Encontrados y Soluciones Aplicadas
+# Problemas Encontrados y Soluciones Aplicadas
 
 ## Problema 1
 
@@ -219,7 +219,7 @@ http://127.0.0.1:8000
 
 ---
 
-# 👨‍💻 Autor
+# Autor
 
 **Nombre:** Diego Andrés Morelo Henao
 
@@ -227,21 +227,12 @@ http://127.0.0.1:8000
 
 **SENA**
 
-**Ficha:** _Agregar número de ficha_
+**Ficha:** _3314811_
 
 ---
 
-# 🔗 Repositorio
 
-Cuando el proyecto sea publicado en GitHub, agregar aquí el enlace:
-
-```
-https://github.com/usuario/gestor-adso
-```
-
----
-
-# 📄 Licencia
+#  Licencia
 
 Proyecto desarrollado con fines académicos como evidencia de aprendizaje del programa ADSO del SENA.
 
@@ -256,23 +247,6 @@ La aplicación incluye tres roles:
 - **aprendiz:** consulta el listado; las operaciones de escritura quedan denegadas también si intenta abrir directamente una URL protegida.
 
 El administrador no puede eliminar su propia cuenta desde el módulo de administración. Los permisos de aprendices se comprueban en rutas, Policy, controlador/Form Request y vistas.
-
-## Base de datos y datos de demostración
-
-1. Crea una base de datos vacía llamada `gestor_adso` en MariaDB/MySQL (o ajusta los valores `DB_*` del `.env`).
-2. Copia `.env.example` a `.env`, configura la conexión y ejecuta `php artisan key:generate`.
-3. Opcionalmente define `GESTOR_DEMO_PASSWORD` solo en el `.env` local, con una contraseña robusta y compartida únicamente para la demostración.
-4. Ejecuta `php artisan migrate --seed`. Se crean aprendices de ejemplo. Las tres cuentas de demostración solo se crean si `GESTOR_DEMO_PASSWORD` está definida y el entorno no es producción:
-   - `admin@gestor-adso.test`
-   - `instructor@gestor-adso.test`
-   - `aprendiz@gestor-adso.test`
-5. Ejecuta `npm install` y `npm run build`; para desarrollo usa `npm run dev`. Inicia Laravel con `php artisan serve`.
-
-No publiques `.env` ni la contraseña compartida. Para probar cada rol inicia sesión con el correo correspondiente y la contraseña que configuraste localmente. El registro público asigna automáticamente el rol `aprendiz`.
-
-## Evidencias y documento técnico
-
-Las plantillas están en [`docs/documento-tecnico-estructura.md`](docs/documento-tecnico-estructura.md) y [`docs/guia-capturas-evidencias.md`](docs/guia-capturas-evidencias.md). Guarda capturas sin secretos en `docs/evidencias/` y acompaña cada una con análisis propio. Completa las pruebas con resultados que hayas observado.
 
 ## Rutas principales
 
